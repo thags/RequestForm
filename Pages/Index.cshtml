@@ -1,4 +1,5 @@
 ﻿@page
+@using RequestForm.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -9,3 +10,23 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<div>
+    Drives:
+</div>
+<div>
+    <form>
+        @foreach (Drive x in Model.GetDrives())
+        {
+            <input type="checkbox" id="@x.Id" name="@x.DriveName" value="@x.Id" />
+            <label for="@x.Id">@x.DriveLetter : @x.DriveName</label>
+            <br />
+        }
+    </form>
+</div>
+<div>Software</div>
+<div>
+    @foreach(Software y in Model.GetSoftware())
+            {
+                <div>@y.SoftwareName</div>
+            }
+</div>

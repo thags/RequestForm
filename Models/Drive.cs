@@ -3,9 +3,9 @@ namespace RequestForm.Models
 {
 	public class Drive
 	{
-		public int id;
-		public string DriveLetter;
-		public string DriveName;
+		public int Id { get; set; }
+		public string DriveLetter { get; set; }
+		public string DriveName { get; set; }
 	}
 }
 

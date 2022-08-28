@@ -1,8 +1,8 @@
 ﻿using RequestForm.Controllers;
+using RequestForm.Interfaces;
 
-DBController.CreateTablesIfNonExistent();
-DBController.NewDrive("D2", "Test2");
-DBController.GetAllDrives();
+DBInterface dbController = new sqliteController();
+dbController.CreateTables();
 
 var builder = WebApplication.CreateBuilder(args);
 
