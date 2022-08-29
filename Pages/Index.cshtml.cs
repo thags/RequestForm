@@ -10,6 +10,7 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
     private DBInterface db = new sqliteController();
+    public NewEmployeeForm employeeInfo = new NewEmployeeForm();
 
     public IndexModel(ILogger<IndexModel> logger)
     {
@@ -18,17 +19,9 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-
+        employeeInfo.Drives = db.GetAllDrives();
+        employeeInfo.Softwares = db.GetAllSoftware();
     }
 
-    public List<Software> GetSoftware()
-    {
-        return db.GetAllSoftware();
-    }
-
-    public List<Drive> GetDrives()
-    {
-        return db.GetAllDrives();
-    }
 }
 

@@ -5,6 +5,7 @@ namespace RequestForm.Models
 	{
 		public int Id { get; set; }
 		public string SoftwareName { get; set; }
+		public bool IsChecked { get; set; }
 	}
 }
 

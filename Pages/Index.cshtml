@@ -5,28 +5,36 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
 <div>
     Drives:
 </div>
 <div>
-    <form>
-        @foreach (Drive x in Model.GetDrives())
+    <form method="post">
+        @foreach (Drive x in Model.employeeInfo.Drives)
         {
-            <input type="checkbox" id="@x.Id" name="@x.DriveName" value="@x.Id" />
-            <label for="@x.Id">@x.DriveLetter : @x.DriveName</label>
+            @*<input type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" />
+            <label for="drive:@x.Id">@x.DriveLetter : @x.DriveName</label>
+            <br />*@
+
+            <input asp-for"x.IsChecked" type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" />
+            <label asp-for"x.IsChecked">@x.DriveLetter : @x.DriveName</label>
             <br />
         }
-    </form>
-</div>
-<div>Software</div>
-<div>
-    @foreach(Software y in Model.GetSoftware())
+        <br />
+        <div>Software</div>
+        <div>
+            @foreach (Software y in Model.employeeInfo.Softwares)
             {
-                <div>@y.SoftwareName</div>
+                <input type="checkbox" id="software:@y.Id" name="software_checked" value="@y.SoftwareName" action=""/>
+                <label for="software:@y.Id">@y.SoftwareName</label>
+                <br />
             }
+        </div>
+        <div id="submitButton">
+            <br />
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+    
 </div>
+
