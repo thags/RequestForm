@@ -44,21 +44,26 @@ public class IndexModel : PageModel
             drives.AppendLine("Drives: ");
             foreach(string drive in form["drive_checked"])
             {
-                drives.Append(drive);
+                drives.AppendLine("- " + drive);
             }
         }
 
         if (form["software_checked"].Count > 0)
         {
-            software.AppendLine(" ");
             software.AppendLine("Software: ");
             foreach (string sw in form["software_checked"])
             {
-                software.Append(sw);
+                software.AppendLine("- " + sw);
             }
         }
 
-        return drives.ToString() + software.ToString();
+        return $@"User: {form["FirstName"]} {form["LastName"]}
+
+Job Title: {form["JobTitle"]}
+Manager: {form["Manager"]}
+
+{drives.ToString()}
+{software.ToString()}";
     }
 
     private bool SendEmail(string emailBody)

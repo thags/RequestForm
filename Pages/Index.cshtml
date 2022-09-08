@@ -8,42 +8,57 @@
 
 <div>
     <form method="post">
-        <label asp-for"@Model.employeeInfo.FirstName">First name</label>
-        <input asp-for"@Model.employeeInfo.FirstName" name="FirstName" />
-
-        <label asp-for"@Model.employeeInfo.LastName">Last name</label>
-        <input asp-for"@Model.employeeInfo.LastName" name="LastName" />
-
-        <label asp-for"@Model.employeeInfo.JobTitle">Title</label>
-        <input asp-for"@Model.employeeInfo.JobTitle" name="JobTitle" />
-
-        <label asp-for"@Model.employeeInfo.ManagerName">Manager</label>
-        <input asp-for"@Model.employeeInfo.ManagerName" name="Manager" />
-
-        <div>
-            Drives:
+        <div class="row">
+            <div class="col">
+                <input asp-for"@Model.employeeInfo.FirstName" name="FirstName" class="form-control" placeholder="First Name"/>
+            </div>
+            <div class="col">
+                <input asp-for"@Model.employeeInfo.LastName" name="LastName" class="form-control" placeholder="Last Name"/>
+            </div>
         </div>
-        @foreach (Drive x in Model.employeeInfo.Drives)
-        {
-            <input asp-for"x.IsChecked" type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" />
-            <label asp-for"x.IsChecked">@x.DriveLetter : @x.DriveName</label>
-            <br />
-        }
-        <br />
-        <div>Software</div>
-        <div>
-            @foreach (Software y in Model.employeeInfo.Softwares)
-            {
-                <input type="checkbox" id="software:@y.Id" name="software_checked" value="@y.SoftwareName" action="" />
-                <label for="software:@y.Id">@y.SoftwareName</label>
-                <br />
-            }
+
+        <div class="row">
+            <div class="col">
+                <input asp-for"@Model.employeeInfo.JobTitle" name="JobTitle" class="form-control" placeholder="Job Title"/>
+            </div>
+            <div class="col">
+                <input asp-for"@Model.employeeInfo.ManagerName" name="Manager" class="form-control" placeholder="Manager"/>
+            </div>
         </div>
+
+        
+        <div class="row">
+            <div class="col">
+                <div>Drives:</div>
+                <div class="form-check">
+                    @foreach (Drive x in Model.employeeInfo.Drives)
+                    {
+                        <input asp-for"x.IsChecked" type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" class="form-check-input" />
+                        <label asp-for"x.IsChecked" class="form-check-label">@x.DriveLetter : @x.DriveName</label>
+                        <br />
+                    }
+                </div>
+            </div>
+            <div class="col">
+                <div>Software:</div>
+                <div class="form-check">
+                    @foreach (Software y in Model.employeeInfo.Softwares)
+                    {
+                        <input type="checkbox" id="software:@y.Id" name="software_checked" value="@y.SoftwareName" action="" class="form-check-input" />
+                        <label for="software:@y.Id" class="form-check-label">@y.SoftwareName</label>
+                        <br />
+                    }
+                </div>
+            </div>
+
+        </div>
+
         <div id="submitButton">
             <br />
-            <input type="submit" value="Submit" />
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+        
+
     </form>
-    
 </div>
 
