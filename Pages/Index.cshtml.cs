@@ -1,16 +1,9 @@
 ﻿using System.Text;
-using FluentEmail.Core;
-using FluentEmail.Core.Models;
-using FluentEmail.Smtp;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorLight.Extensions;
 using RequestForm.Controllers;
 using RequestForm.Interfaces;
 using RequestForm.Models;
-using FluentEmail;
-using System.Net.Mail;
-using System.Net;
 
 namespace RequestForm.Pages;
 
@@ -19,6 +12,7 @@ public class IndexModel : PageModel
     private readonly ILogger<IndexModel> _logger;
     private readonly DBInterface db = new sqliteController();
     public NewEmployeeForm employeeInfo = new NewEmployeeForm();
+    private EmailInterface emailController = new FluentEmailController();
 
     public IndexModel(ILogger<IndexModel> logger)
     {
@@ -34,7 +28,7 @@ public class IndexModel : PageModel
     public IActionResult OnPost()
     {
         string emailBody = BuildEmail(Request.Form);
-        SendEmail();
+        SendEmail(emailBody);
         return RedirectToPage("./Index");
     }
 
@@ -47,53 +41,29 @@ public class IndexModel : PageModel
 
         if (form["drive_checked"].Count > 0)
         {
+            drives.AppendLine("Drives: ");
             foreach(string drive in form["drive_checked"])
             {
                 drives.Append(drive);
             }
         }
 
-        if (form["drive_checked"].Count > 0)
+        if (form["software_checked"].Count > 0)
         {
-            foreach (string drive in form["software_checked"])
+            software.AppendLine(" ");
+            software.AppendLine("Software: ");
+            foreach (string sw in form["software_checked"])
             {
-                software.Append(drive);
+                software.Append(sw);
             }
         }
 
-        return "Drives: "+drives.ToString() + " Software: " + software.ToString();
+        return drives.ToString() + software.ToString();
     }
 
-    private bool SendEmail()
+    private bool SendEmail(string emailBody)
     {
-        SendResponse emailResponse;
-        try
-        {
-            var sender = new SmtpSender(() => new SmtpClient("smtp.gmail.com")
-            {
-                UseDefaultCredentials = false,
-                Port = 587,
-                Credentials = new NetworkCredential("email@email.com", "password"),
-                EnableSsl = true,
-            });
-
-            Email.DefaultSender = sender;
-            var email = Email
-                .From("Test@test.com")
-                .To("email", "name")
-                .Subject("test email")
-                .Body("Test email body");
-
-            emailResponse = email.SendAsync().GetAwaiter().GetResult();
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
-
-        if (emailResponse.Successful) return true;
-
-        return false;
+        return emailController.SendEmail(emailBody);
     }
 }
 

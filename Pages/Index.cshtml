@@ -12,10 +12,6 @@
     <form method="post">
         @foreach (Drive x in Model.employeeInfo.Drives)
         {
-            @*<input type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" />
-            <label for="drive:@x.Id">@x.DriveLetter : @x.DriveName</label>
-            <br />*@
-
             <input asp-for"x.IsChecked" type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" />
             <label asp-for"x.IsChecked">@x.DriveLetter : @x.DriveName</label>
             <br />
