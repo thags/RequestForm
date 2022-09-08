@@ -1,0 +1,25 @@
+﻿@page
+@using RequestForm.Models
+@model EditDrivesModel
+@{
+    ViewData["Title"] = "Edit Drives";
+}
+
+
+<div>
+    <table>
+        <tr>
+            <th>Drive Letter</th>
+            <th>Drive Name</th>
+        </tr>
+            @foreach (Drive drive in Model.drives)
+            {
+                <tr>
+                <td>@drive.DriveLetter</td>
+                <td>@drive.DriveName</td>
+                <td><input type="button"></td>
+                </tr>
+            }
+    </table>
+
+</div>
