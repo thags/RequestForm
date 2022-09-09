@@ -10,19 +10,19 @@
     <form method="post">
         <div class="row">
             <div class="col">
-                <input asp-for"@Model.employeeInfo.FirstName" name="FirstName" class="form-control" placeholder="First Name"/>
+                <input asp-for="@Model.employeeInfo.FirstName" name="FirstName" class="form-control" placeholder="First Name" required/>
             </div>
             <div class="col">
-                <input asp-for"@Model.employeeInfo.LastName" name="LastName" class="form-control" placeholder="Last Name"/>
+                <input asp-for="@Model.employeeInfo.LastName" name="LastName" class="form-control" placeholder="Last Name" required/>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <input asp-for"@Model.employeeInfo.JobTitle" name="JobTitle" class="form-control" placeholder="Job Title"/>
+                <input asp-for="@Model.employeeInfo.JobTitle" name="JobTitle" class="form-control" placeholder="Job Title" required/>
             </div>
             <div class="col">
-                <input asp-for"@Model.employeeInfo.ManagerName" name="Manager" class="form-control" placeholder="Manager"/>
+                <input asp-for="@Model.employeeInfo.ManagerName" name="Manager" class="form-control" placeholder="Manager" required/>
             </div>
         </div>
 
@@ -33,8 +33,8 @@
                 <div class="form-check">
                     @foreach (Drive x in Model.employeeInfo.Drives)
                     {
-                        <input asp-for"x.IsChecked" type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" class="form-check-input" />
-                        <label asp-for"x.IsChecked" class="form-check-label">@x.DriveLetter : @x.DriveName</label>
+                        <input type="checkbox" id="drive:@x.Id" name="drive_checked" value="@x.DriveLetter @x.DriveName" class="form-check-input" />
+                        <label class="form-check-label">@x.DriveLetter : @x.DriveName</label>
                         <br />
                     }
                 </div>
