@@ -10,11 +10,9 @@ namespace RequestForm.Models
         public string LastName { get; set; }
         [Required]
         public string JobTitle { get; set; }
-        [Required]
         public List<Drive> Drives { get; set; }
         [Required]
         public string ManagerName { get; set; }
-        [Required]
         public List<Software> Softwares { get; set; }
     }
 }

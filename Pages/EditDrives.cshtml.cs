@@ -17,7 +17,6 @@ public class EditDrivesModel : PageModel
     {
         drives = db.GetAllDrives();
     }
-
     
 }
 

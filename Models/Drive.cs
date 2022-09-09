@@ -6,7 +6,7 @@ namespace RequestForm.Models
 		public int Id { get; set; }
 		public string DriveLetter { get; set; }
 		public string DriveName { get; set; }
-		public bool? IsChecked {
+		public bool IsChecked {
 			get { return (IsChecked == null)? false : IsChecked; }
 			set { } 
 		}

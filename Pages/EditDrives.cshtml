@@ -1,25 +1,28 @@
 ﻿@page
-@using RequestForm.Models
 @model EditDrivesModel
 @{
     ViewData["Title"] = "Edit Drives";
 }
 
 
-<div>
+@using (Html.BeginForm())
+{
     <table>
-        <tr>
-            <th>Drive Letter</th>
-            <th>Drive Name</th>
-        </tr>
-            @foreach (Drive drive in Model.drives)
-            {
-                <tr>
-                <td>@drive.DriveLetter</td>
-                <td>@drive.DriveName</td>
-                <td><input type="button"></td>
-                </tr>
-            }
+    @for (var i = 0; i < Model.drives.Count; i++)
+    {
+        @Html.HiddenFor(x => x.drives[i].Id);
+        
+            <tr>
+                <td>
+                    @Html.HiddenFor(it => it.drives[i].Id)
+                    @Html.EditorFor(it => it.drives[i].DriveLetter)
+                    @Html.EditorFor(it => it.drives[i].DriveName)
+                </td>
+                <td>
+                   @* @Html.CheckBoxFor(it => it.drives[i].IsChecked, new { Style = "vertical-align:3px}" })*@
+                </td>
+            </tr>
+        
+    }
     </table>
-
-</div>
+}
