@@ -22,10 +22,7 @@ namespace RequestForm.Controllers
                 using (var command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = @"CREATE TABLE IF NOT EXISTS drives(id INTEGER PRIMARY KEY,
-                                                                DriveLetter TEXT, 
-                                                                DriveName TEXT
-                                                                    );";
+                    command.CommandText = @"CREATE TABLE IF NOT EXISTS drives(id INTEGER PRIMARY KEY, DriveLetter TEXT, DriveName TEXT);";
                     try
                     {
                         command.ExecuteNonQuery();
@@ -44,9 +41,7 @@ namespace RequestForm.Controllers
                 using (var command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = @"CREATE TABLE IF NOT EXISTS software(id INTEGER PRIMARY KEY,
-                                                                SoftwareName TEXT
-                                                                    );";
+                    command.CommandText = @"CREATE TABLE IF NOT EXISTS software(id INTEGER PRIMARY KEY,SoftwareName TEXT);";
                     try
                     {
                         command.ExecuteNonQuery();
@@ -124,8 +119,7 @@ namespace RequestForm.Controllers
                 using (var command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = $@"UPDATE drives SET DriveLetter = {editedDrive.DriveLetter}, DriveName = {editedDrive.DriveName}
-                                          WHERE Id = {editedDrive.Id}";
+                    command.CommandText = $"UPDATE drives SET DriveLetter = '{editedDrive.DriveLetter}', DriveName = '{editedDrive.DriveName}' WHERE Id = '{editedDrive.Id}'";
 
                     try
                     {
