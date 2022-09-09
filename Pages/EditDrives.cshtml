@@ -5,24 +5,24 @@
 }
 
 
-@using (Html.BeginForm())
-{
-    <table>
+
+    
     @for (var i = 0; i < Model.drives.Count; i++)
     {
-        @Html.HiddenFor(x => x.drives[i].Id);
-        
+        @using (Html.BeginForm())
+        {
+        <table>
             <tr>
                 <td>
                     @Html.HiddenFor(it => it.drives[i].Id)
-                    @Html.EditorFor(it => it.drives[i].DriveLetter)
-                    @Html.EditorFor(it => it.drives[i].DriveName)
+                    @Html.TextBoxFor(it => it.drives[i].DriveLetter)
+                    @Html.TextBoxFor(it => it.drives[i].DriveName)
                 </td>
                 <td>
-                   @* @Html.CheckBoxFor(it => it.drives[i].IsChecked, new { Style = "vertical-align:3px}" })*@
+                    <button id="button">Save Edit</button>
                 </td>
             </tr>
-        
+        </table>
     }
-    </table>
+    
 }
