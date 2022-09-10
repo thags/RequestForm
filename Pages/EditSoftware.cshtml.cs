@@ -20,12 +20,13 @@ public class EditSoftwareModel : PageModel
 
     public void GetSoftware()
     {
-        software = db.GetAllSoftware();
         software.Add(
             new Software()
             {
                 Id = -1,
             });
+        software.AddRange(db.GetAllSoftware());
+        
     }
 
     public IActionResult OnPost(IFormCollection form)
