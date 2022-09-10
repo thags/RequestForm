@@ -20,12 +20,13 @@ public class EditDrivesModel : PageModel
 
     public void GetDrives()
     {
+        drives.AddRange(db.GetAllDrives());
         drives.Add(
             new Drive()
             {
                 Id = -1,
             });
-        drives.AddRange(db.GetAllDrives());
+        drives.Reverse();
     }
 
     public IActionResult OnPost(IFormCollection form)

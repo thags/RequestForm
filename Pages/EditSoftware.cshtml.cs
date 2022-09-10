@@ -20,12 +20,13 @@ public class EditSoftwareModel : PageModel
 
     public void GetSoftware()
     {
+        software.AddRange(db.GetAllSoftware());
         software.Add(
             new Software()
             {
                 Id = -1,
             });
-        software.AddRange(db.GetAllSoftware());
+        software.Reverse();
         
     }
 
