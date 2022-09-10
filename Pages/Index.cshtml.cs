@@ -13,6 +13,8 @@ public class IndexModel : PageModel
     private readonly DBInterface db = new sqliteController();
     public NewEmployeeForm employeeInfo = new NewEmployeeForm();
     private EmailInterface emailController = new FluentEmailController();
+    public string? emailStatusMessage = null;
+    public string? emailAlertClass = null;
 
     public IndexModel(ILogger<IndexModel> logger)
     {
@@ -21,15 +23,38 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        employeeInfo.Drives = db.GetAllDrives();
-        employeeInfo.Softwares = db.GetAllSoftware();
+        LoadDBInfo();
     }
 
     public IActionResult OnPost()
     {
+        emailStatusMessage = null;
+        emailAlertClass = null;
+
         string emailBody = BuildEmail(Request.Form);
-        SendEmail(emailBody);
-        return RedirectToPage("./Index");
+        bool emailSent = SendEmail(emailBody);
+
+        LoadDBInfo();
+
+        if(emailSent == false)
+        {
+            emailAlertClass = "alert alert-warning";
+            emailStatusMessage = @"Failed to send request, please try again or contact your adminsitrator!";
+        }
+
+        if(emailSent == true)
+        {
+            emailAlertClass = "alert alert-success";
+            emailStatusMessage = @"Succesfully sent request";
+        }
+
+        return Page();
+    }
+
+    private void LoadDBInfo()
+    {
+        employeeInfo.Drives = db.GetAllDrives();
+        employeeInfo.Softwares = db.GetAllSoftware();
     }
 
     private string BuildEmail(IFormCollection form)
