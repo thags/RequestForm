@@ -1,0 +1,33 @@
+﻿@page
+@model EditSoftwareModel
+@{
+    ViewData["Title"] = "Edit Drives";
+}
+
+
+<table>
+    <tr>
+        <td>
+            Software Name
+        </td>
+    </tr>
+</table>
+    
+    @for (var i = 0; i < Model.software.Count; i++)
+    {
+        @using (Html.BeginForm())
+        {
+        <table>
+            <tr>
+                <td>
+                    @Html.HiddenFor(it => it.software[i].Id)
+                    @Html.TextBoxFor(it => it.software[i].SoftwareName)
+                </td>
+                <td>
+                    <button id="button">Save Edit</button>
+                </td>
+            </tr>
+        </table>
+    }
+    
+}
