@@ -69,7 +69,7 @@ namespace RequestForm.Controllers
                 using (var command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = "SELECT * FROM 'drives'";
+                    command.CommandText = "SELECT * FROM 'drives' ORDER BY ID DESC";
 
 
                     using (var reader = command.ExecuteReader())
@@ -235,7 +235,7 @@ namespace RequestForm.Controllers
                 using (var command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = "SELECT * FROM 'software'";
+                    command.CommandText = "SELECT * FROM 'software' ORDER BY ID DESC";
 
 
                     using (var reader = command.ExecuteReader())
