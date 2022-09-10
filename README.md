@@ -17,7 +17,8 @@ This is the page that allows the administrator to add, edit or delete software w
 
 # Configuration
 To configure email you will need to edit the appsettings.json file. 
-This section
+This section:
+```
   "EmailSMTPConfig": {
     "Username": "%username%",
     "Password": "%password%",
@@ -29,3 +30,4 @@ This section
     "EmailFrom": "%Which account is being mailed from%",
     "EmailSubject": "%Subject of email%"
   }
+  ```
