@@ -7,7 +7,7 @@
 
 
 <div>
-    <form method="post">
+    <form method="post" class="form-group">
         <div class="row">
             <div class="col">
                 <input asp-for="@Model.employeeInfo.FirstName" name="FirstName" class="form-control" placeholder="First Name" required/>
@@ -16,7 +16,7 @@
                 <input asp-for="@Model.employeeInfo.LastName" name="LastName" class="form-control" placeholder="Last Name" required/>
             </div>
         </div>
-
+        <br />
         <div class="row">
             <div class="col">
                 <input asp-for="@Model.employeeInfo.JobTitle" name="JobTitle" class="form-control" placeholder="Job Title" required/>
@@ -25,7 +25,7 @@
                 <input asp-for="@Model.employeeInfo.ManagerName" name="Manager" class="form-control" placeholder="Manager" required/>
             </div>
         </div>
-
+        <br />
         
         <div class="row">
             <div class="col">

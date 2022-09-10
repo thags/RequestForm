@@ -57,13 +57,7 @@ public class IndexModel : PageModel
             }
         }
 
-        return $@"User: {form["FirstName"]} {form["LastName"]}
-
-Job Title: {form["JobTitle"]}
-Manager: {form["Manager"]}
-
-{drives.ToString()}
-{software.ToString()}";
+        return $"User: {form["FirstName"]} {form["LastName"]}\r\nJob Title: {form["JobTitle"]}\r\nManager: {form["Manager"]}\r\n\r\n{drives.ToString()}\r\n{software.ToString()}";
     }
 
     private bool SendEmail(string emailBody)
