@@ -8,7 +8,7 @@ using FluentEmail.Core;
 
 namespace RequestForm.Controllers
 {
-    public class FluentEmailController : EmailInterface
+    public class FluentEmailController : IEmailInterface
     {
         public bool SendEmail(string emailBody)
         {

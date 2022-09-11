@@ -2,7 +2,7 @@
 using RequestForm.Models;
 namespace RequestForm.Interfaces
 {
-	public interface DBInterface
+	public interface IDBInterface
 	{
 		public void CreateTables();
 		public void AddDrive(Drive newDrive);

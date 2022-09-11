@@ -9,9 +9,13 @@ namespace RequestForm.Pages;
 
 public class EditDrivesModel : PageModel
 {
-    private readonly DBInterface db = new sqliteController();
+    private readonly IDBInterface db;
     public List<Drive> drives = new List<Drive>();
 
+    public EditDrivesModel(IDBInterface dbController)
+    {
+        db = dbController;
+    }
 
     public void OnGet()
     {

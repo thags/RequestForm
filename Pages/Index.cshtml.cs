@@ -10,15 +10,18 @@ namespace RequestForm.Pages;
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
-    private readonly DBInterface db = new sqliteController();
+    private readonly IDBInterface db;
+    private IEmailInterface emailController;
+
     public NewEmployeeForm employeeInfo = new NewEmployeeForm();
-    private EmailInterface emailController = new FluentEmailController();
     public string? emailStatusMessage = null;
     public string? emailAlertClass = null;
 
-    public IndexModel(ILogger<IndexModel> logger)
+    public IndexModel(ILogger<IndexModel> logger, IDBInterface dbController, IEmailInterface email)
     {
         _logger = logger;
+        db = dbController;
+        emailController = email;
     }
 
     public void OnGet()

@@ -6,7 +6,7 @@ using RequestForm.Interfaces;
 
 namespace RequestForm.Controllers
 {
-    public class sqliteController : DBInterface
+    public class sqliteController : IDBInterface
     {
         private string ConnectionString;
 

@@ -9,9 +9,13 @@ namespace RequestForm.Pages;
 
 public class EditSoftwareModel : PageModel
 {
-    private readonly DBInterface db = new sqliteController();
+    private IDBInterface db;
     public List<Software> software = new List<Software>();
 
+    public EditSoftwareModel(IDBInterface dbController)
+    {
+        db = dbController;
+    }
 
     public void OnGet()
     {

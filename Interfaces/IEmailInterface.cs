@@ -2,7 +2,7 @@
 
 namespace RequestForm.Interfaces
 {
-    public interface EmailInterface
+    public interface IEmailInterface
     {
         bool SendEmail(string emailBody);
 
